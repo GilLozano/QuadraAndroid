@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="Widget.App.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/colorTextSecondary</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textCursorDrawable">@drawable/my_custom_cursor_drawable</item>
+
+
+    </style>
+
+</resources>
