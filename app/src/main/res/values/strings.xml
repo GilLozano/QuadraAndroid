@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuadraAndroidStudio</string>
+    <string name="title_activity_login">activity_login</string>
+    <string name="title_activity_reserve_location">activity_reserve_location</string>
 </resources>
