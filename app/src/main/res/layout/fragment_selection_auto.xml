@@ -18,6 +18,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:layout_marginTop="50dp"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways">
 
@@ -25,13 +26,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"> <ImageView
-                android:id="@+id/imageViewLogo"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginEnd="0dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/quadralogo"
-                android:contentDescription="Quadra Car Rental Logo" />
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageViewLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/quadralogo"
+                    android:contentDescription="Quadra Car Rental Logo" />
 
                 <TextView
                     android:id="@+id/textViewScreenTitle"
@@ -46,29 +51,22 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="Selección de Auto"
             android:textColor="@color/colorOnSurface"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.chip.ChipGroup
@@ -126,15 +124,18 @@
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewAutos"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_car"
-            tools:itemCount="2" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAutos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_car"
+        tools:itemCount="2" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
