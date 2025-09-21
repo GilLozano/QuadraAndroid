@@ -31,9 +31,8 @@ class LoginActivity : AppCompatActivity() {
                 // Simulación de un login exitoso
                 Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show()
 
-                // --- CAMBIO TEMPORAL AQUÍ ---
                 // 1. Crea un Intent para ir de LoginActivity a ReserveLocationActivity.
-                val intent = Intent(this, ReserveLocationActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
 
                 // 2. Inicia la nueva actividad.
                 startActivity(intent)
@@ -41,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
                 // 3. (Opcional pero recomendado) Finaliza LoginActivity
                 //    para que el usuario no pueda volver a la pantalla de login con el botón "atrás".
                 finish()
-                // --- FIN DEL CAMBIO TEMPORAL ---
 
                 // Navegar a la siguiente pantalla, etc.
             } else {

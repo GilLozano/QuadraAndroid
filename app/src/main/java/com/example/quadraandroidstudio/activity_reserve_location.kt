@@ -1,26 +1,39 @@
 package com.example.quadraandroidstudio
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.example.quadraandroidstudio.databinding.ActivityReserveLocationBinding
+import androidx.fragment.app.Fragment
+import com.example.quadraandroidstudio.databinding.FragmentReserveLocationBinding // NOTA: El nombre del binding cambiará
+import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class ReserveLocationActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityReserveLocationBinding
+class ReserveLocationFragment : Fragment() { // 1. Cambiado de AppCompatActivity a Fragment
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityReserveLocationBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    // 2. La forma correcta de manejar View Binding en un Fragment
+    private var _binding: FragmentReserveLocationBinding? = null
+    private val binding get() = _binding!!
 
+    // 3. Inflar el layout se hace en onCreateView
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentReserveLocationBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    // 4. El resto de la lógica va en onViewCreated
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
-        setupBottomNavigationView()
+        // 5. La lógica del BottomNavigationView se ha ELIMINADO
     }
 
     private fun setupClickListeners() {
@@ -47,23 +60,25 @@ class ReserveLocationActivity : AppCompatActivity() {
             val dateEnd = binding.etDateEnd.text.toString()
 
             if (location.isNotEmpty() && dateStart.isNotEmpty() && dateEnd.isNotEmpty()) {
-                Toast.makeText(this, "Buscando autos en $location del $dateStart al $dateEnd", Toast.LENGTH_LONG).show()
-                // Aquí iría la lógica para pasar a la pantalla de selección de auto
-                // val intent = Intent(this, SelectCarActivity::class.java)
-                // startActivity(intent)
+                // 6. Usamos requireContext() en lugar de 'this' para el Context
+                Toast.makeText(requireContext(), "Buscando autos en $location del $dateStart al $dateEnd", Toast.LENGTH_LONG).show()
+
+                // La navegación ahora se haría con el Navigation Component
+                // Ejemplo: findNavController().navigate(R.id.action_reserveLocationFragment_to_selectionAutoFragment)
+
             } else {
-                Toast.makeText(this, "Por favor, completa todos los campos de reserva", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Por favor, completa todos los campos de reserva", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun showDatePickerDialog(editText: com.google.android.material.textfield.TextInputEditText) {
+    private fun showDatePickerDialog(editText: TextInputEditText) {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this,
+        val datePickerDialog = DatePickerDialog(requireContext(), // 6. Usamos requireContext()
             { _, selectedYear, selectedMonth, selectedDayOfMonth ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(selectedYear, selectedMonth, selectedDayOfMonth)
@@ -73,38 +88,10 @@ class ReserveLocationActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 
-    private fun setupBottomNavigationView() {
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    Toast.makeText(this, "Home seleccionado", Toast.LENGTH_SHORT).show()
-                    // Si ya estás en Home (ReserveLocationActivity), no hagas nada o refresca.
-                    // Si Home es otra Activity, podrías iniciarla:
-                    // startActivity(Intent(this, MainActivity::class.java))
-                    true
-                }
-                R.id.nav_reservas -> {
-                    Toast.makeText(this, "Reservas seleccionado", Toast.LENGTH_SHORT).show()
-                    // val intent = Intent(this, ReservationsActivity::class.java)
-                    // startActivity(intent)
-                    true
-                }
-                R.id.nav_publish -> {
-                    Toast.makeText(this, "Publicar seleccionado", Toast.LENGTH_SHORT).show()
-                    // val intent = Intent(this, PublishActivity::class.java)
-                    // startActivity(intent)
-                    true
-                }
-                R.id.nav_account -> {
-                    Toast.makeText(this, "Cuenta seleccionado", Toast.LENGTH_SHORT).show()
-                    // val intent = Intent(this, AccountActivity::class.java)
-                    // startActivity(intent)
-                    true
-                }
-                else -> false
-            }
-        }
-        // Establecer el item inicial como seleccionado si esta es la pantalla principal del "Home"
-        binding.bottomNavigationView.selectedItemId = R.id.nav_home
+    // 7. Limpiar el binding para evitar fugas de memoria
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
+
 }

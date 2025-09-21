@@ -16,4 +16,9 @@
     <color name="colorGreenButton">#4CAF50</color>
     <color name="colorOnGreenButton">#FFFFFF</color>
 
+    <color name="chip_background_selected">@color/colorPrimary</color>
+    <color name="chip_background_default">@color/colorSurface</color>
+    <color name="chip_text_selected">@color/colorOnPrimary</color>
+    <color name="chip_text_default">@color/colorTextSecondary</color>
+
 </resources>

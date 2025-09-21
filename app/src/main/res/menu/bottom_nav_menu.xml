@@ -5,13 +5,13 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
-        android:id="@+id/nav_reservas"
+        android:id="@+id/nav_cars"
         android:icon="@drawable/ic_car"
-        android:title="Reservar" />
+        android:title="Autos" />
     <item
-        android:id="@+id/nav_publish"
+        android:id="@+id/nav_records"
         android:icon="@drawable/ic_publish"
-        android:title="Historial" />
+        android:title="Reservas" />
     <item
         android:id="@+id/nav_account"
         android:icon="@drawable/ic_account"
