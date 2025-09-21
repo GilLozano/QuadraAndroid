@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_selection_auto" />
 
     <fragment
-        android:id="@+id/nav_records"
+        android:id="@+id/nav_history"
         android:name="com.example.quadraandroidstudio.HistoryFragment"
         android:label="Historial"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history"/>
 
     <fragment
         android:id="@+id/nav_account"

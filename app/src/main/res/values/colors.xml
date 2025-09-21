@@ -21,4 +21,6 @@
     <color name="chip_text_selected">@color/colorOnPrimary</color>
     <color name="chip_text_default">@color/colorTextSecondary</color>
 
+    <color name="colorOrangeStatus">#fd7e14</color>
+    <color name="colorGreenStatus">#28a745</color>
 </resources>

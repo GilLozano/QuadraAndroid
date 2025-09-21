@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_car"
         android:title="Autos" />
     <item
-        android:id="@+id/nav_records"
+        android:id="@+id/nav_history"
         android:icon="@drawable/ic_publish"
         android:title="Reservas" />
     <item
