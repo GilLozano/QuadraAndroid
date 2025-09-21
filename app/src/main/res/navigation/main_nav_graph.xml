@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.quadraandroidstudio.ReserveLocationFragment"
+        android:label="Selección de Reserva"
+        tools:layout="@layout/fragment_reserve_location" />
+
+    <fragment
+        android:id="@+id/nav_cars"
+        android:name="com.example.quadraandroidstudio.SelectionAutoFragment"
+        android:label="Selección de Auto"
+        tools:layout="@layout/fragment_selection_auto" />
+
+    <fragment
+        android:id="@+id/nav_records"
+        android:name="com.example.quadraandroidstudio.HistoryFragment"
+        android:label="Historial"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.example.quadraandroidstudio.AccountFragment"
+        android:label="Cuenta"
+        tools:layout="@layout/fragment_account" />
+</navigation>
