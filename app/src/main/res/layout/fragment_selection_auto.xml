@@ -1,141 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     android:background="@color/colorBackground"
-    tools:context=".SelectionAutoFragment">
+    tools:context="SelectionAutoFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
-        android:elevation="0dp"
-        app:elevation="0dp">
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Selección de Auto"
+        android:textColor="@color/colorOnSurface"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_marginTop="50dp"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginBottom="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/imageViewLogo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/quadralogo"
-                    android:contentDescription="Quadra Car Rental Logo" />
-
-                <TextView
-                    android:id="@+id/textViewScreenTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Selección de Auto"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorOnSurface"
-                    android:layout_marginStart="0dp"
-                    android:visibility="gone"/>
-            </LinearLayout>
-        </androidx.appcompat.widget.Toolbar>
-
-        <TextView
-            android:layout_width="match_parent"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupFilters"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Selección de Auto"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
+            app:chipSpacingHorizontal="8dp"
+            app:singleLine="true">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_marginBottom="16dp">
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupFilters"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTransmision"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipSpacingHorizontal="8dp"
-                app:singleLine="true">
+                android:text="Transmisión"
+                android:textColor="@color/chip_text_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipTransmision"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Transmisión"
-                    android:textColor="@color/chip_text_selector"
-                    app:chipBackgroundColor="@color/chip_background_selector" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAsientos"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Asientos"
+                android:textColor="@color/chip_text_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipAsientos"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Asientos"
-                    android:textColor="@color/chip_text_selector"
-                    app:chipBackgroundColor="@color/chip_background_selector" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAnio"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Año"
+                android:textColor="@color/chip_text_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipAnio"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Año"
-                    android:textColor="@color/chip_text_selector"
-                    app:chipBackgroundColor="@color/chip_background_selector" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTipo"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo"
+                android:textColor="@color/chip_text_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipTipo"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tipo"
-                    android:textColor="@color/chip_text_selector"
-                    app:chipBackgroundColor="@color/chip_background_selector" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMarca"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marca"
+                android:textColor="@color/chip_text_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipMarca"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Marca"
-                    android:textColor="@color/chip_text_selector"
-                    app:chipBackgroundColor="@color/chip_background_selector" />
-
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
-
-    </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAutos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_car"
-        tools:itemCount="2" />
+        tools:listitem="@layout/item_car"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

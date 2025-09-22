@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="12dp"
+    android:paddingHorizontal="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/ivOptionIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="Option Icon"
+        app:tint="@color/colorTextSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:src="@drawable/ic_account_settings" />
+
+    <TextView
+        android:id="@+id/tvOptionTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/ivOptionIcon"
+        app:layout_constraintEnd_toStartOf="@+id/ivArrow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Opciones de la Cuenta" />
+
+    <ImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_arrow_right"
+        android:contentDescription="Navigation Arrow"
+        app:tint="@color/colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintStart_toStartOf="@+id/tvOptionTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="12dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
