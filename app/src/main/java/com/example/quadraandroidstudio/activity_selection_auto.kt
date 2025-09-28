@@ -62,6 +62,8 @@ class SelectionAutoFragment : Fragment() {
         carAdapter = CarAdapter { car ->
             // Lógica cuando se hace clic en el botón "Reservar" de un auto
             Log.d("SelectionAutoFragment", "Reservar clickeado para: ${car.name}")
+
+            findNavController().navigate(R.id.action_selectionAutoFragment_to_reserveFormFragment)
             // Para navegar a la siguiente pantalla (por ejemplo, un fragmento de detalles del auto):
             // findNavController().navigate(R.id.action_selectionAutoFragment_to_carDetailFragment)
         }

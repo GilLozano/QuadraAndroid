@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quadraandroidstudio.databinding.ItemCarBinding
-import com.example.quadraandroidstudio.model.Car // Importa tu modelo Car
-import com.example.quadraandroidstudio.R // Importa R para acceder a los drawables
+import com.example.quadraandroidstudio.model.Car
+import com.example.quadraandroidstudio.R
 
 class CarAdapter(private val onReserveClick: (Car) -> Unit) :
     ListAdapter<Car, CarAdapter.CarViewHolder>(CarDiffCallback()) {
