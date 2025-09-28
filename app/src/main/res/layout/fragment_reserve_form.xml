@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:padding="24dp"
+    tools:context=".ui.ReserveFormFragment">
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:src="@drawable/quadralogo"
+        android:contentDescription="Quadra Car Rental Logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Formulario de Datos de la Reserva"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tilLocation" />
+
+    <ImageView
+        android:id="@+id/ivLocationIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="location icon"
+        android:src="@drawable/ic_location"
+        app:tint="@color/colorTextSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilLocation"
+        app:layout_constraintBottom_toBottomOf="@+id/tilLocation" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilLocation"
+        style="@style/Widget.App.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:hint="Lugar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivLocationIcon"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintBottom_toTopOf="@+id/tilDateStart">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/colorTextPrimary"
+            android:focusable="false"
+            android:clickable="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/ivDateStartIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="date icon"
+        android:src="@drawable/ic_date"
+        app:tint="@color/colorTextSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilDateStart"
+        app:layout_constraintBottom_toBottomOf="@+id/tilDateStart" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDateStart"
+        style="@style/Widget.App.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:hint="Fecha de Inicio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivDateStartIcon"
+        app:layout_constraintTop_toBottomOf="@+id/tilLocation"
+        app:layout_constraintBottom_toTopOf="@+id/tilPaymentMethod">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDateStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"
+            android:textColor="@color/colorTextPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/ivPaymentMethodIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="payment icon"
+        android:src="@drawable/ic_payment_method"
+        app:tint="@color/colorTextSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilPaymentMethod"
+        app:layout_constraintBottom_toBottomOf="@+id/tilPaymentMethod" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPaymentMethod"
+        style="@style/Widget.App.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:hint="Método de Pago"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPaymentMethodIcon"
+        app:layout_constraintTop_toBottomOf="@+id/tilDateStart"
+        app:layout_constraintBottom_toTopOf="@+id/btnReserveCar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPaymentMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"
+            android:textColor="@color/colorTextPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReserveCar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingVertical="14dp"
+        android:text="Reservar Auto"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="16sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilPaymentMethod" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

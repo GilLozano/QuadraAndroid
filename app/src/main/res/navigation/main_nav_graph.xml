@@ -16,6 +16,15 @@
         android:name="com.example.quadraandroidstudio.SelectionAutoFragment"
         android:label="Selección de Auto"
         tools:layout="@layout/fragment_selection_auto" />
+    <action
+        android:id="@+id/action_selectionAutoFragment_to_reserveFormFragment"
+        app:destination="@id/reserveFormFragment" />
+
+    <fragment
+        android:id="@+id/reserveFormFragment"
+        android:name="com.example.quadraandroidstudio.ReserveFormFragment"
+        android:label="fragment_reserve_form"
+        tools:layout="@layout/fragment_reserve_form" />
 
     <fragment
         android:id="@+id/nav_history"

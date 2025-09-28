@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quadraandroidstudio.databinding.ActivityLoginBinding
+import androidx.lifecycle.lifecycleScope
+import com.example.quadraandroidstudio.data.LoginRequest
+import com.example.quadraandroidstudio.network.RetrofitClient
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,25 +27,31 @@ class LoginActivity : AppCompatActivity() {
     private fun setupClickListeners() {
         // Listener para el botón de Iniciar Sesión
         binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+            val email = binding.etEmail.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
 
-            // Aquí iría tu lógica de validación y autenticación
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                // Simulación de un login exitoso
-                Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show()
+                val loginRequest = LoginRequest(email, password)
 
-                // 1. Crea un Intent para ir de LoginActivity a ReserveLocationActivity.
-                val intent = Intent(this, MainActivity::class.java)
+                // Usamos una coroutine para la llamada a la red
+                lifecycleScope.launch {
+                    try {
+                        // Llamamos a la API
+                        val response = RetrofitClient.instance.login(loginRequest)
 
-                // 2. Inicia la nueva actividad.
-                startActivity(intent)
+                        // Si la llamada es exitosa, guardamos el token y navegamos
+                        Toast.makeText(this@LoginActivity, "Login exitoso!", Toast.LENGTH_SHORT).show()
+                        // Aquí guardarías el token: response.token
 
-                // 3. (Opcional pero recomendado) Finaliza LoginActivity
-                //    para que el usuario no pueda volver a la pantalla de login con el botón "atrás".
-                finish()
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
 
-                // Navegar a la siguiente pantalla, etc.
+                    } catch (e: Exception) {
+                        // Si hay un error (ej. contraseña incorrecta, sin internet)
+                        Toast.makeText(this@LoginActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             }
