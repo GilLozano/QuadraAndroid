@@ -10,6 +10,7 @@ import com.example.quadraandroidstudio.databinding.FragmentCompletedReservations
 import com.example.quadraandroidstudio.adapter.ReservationAdapter // Crearemos este adapter
 import com.example.quadraandroidstudio.model.Reservation // Crearemos este modelo
 import com.example.quadraandroidstudio.model.Car // Usaremos el modelo Car
+import com.example.quadraandroidstudio.model.Seguro
 
 class CompletedReservationsFragment : Fragment() {
 
@@ -48,11 +49,36 @@ class CompletedReservationsFragment : Fragment() {
         val completedReservations = listOf(
             Reservation(
                 id = "RES002",
-                car = Car("2", "Lamborghini Aventador SV LP 770-4", "Lamborghini", 2022, 1800.0, "lamborghini_yellow"),
+                // ¡CAMBIO AQUÍ! Crea un objeto Car que coincida con el constructor completo
+                car = Car(
+                    id = 1, // Un ID de ejemplo
+                    marca = "Lamborghini",
+                    modelo = "Aventador SV LP 770-4",
+                    color = "Amarillo",
+                    anio = 2022,
+                    transmision = "Automática",
+                    tipo = "Deportivo",
+                    puertas = 2,
+                    asientos = 2,
+                    clima = true,
+                    precioPorDia = 1800.0,
+                    seguroId = 1, // Un ID de seguro de ejemplo
+                    imagen = "lamborghini_yellow", // El nombre del recurso drawable
+                    estado = "Disponible", // Estado de ejemplo
+                    seguro = Seguro( // Objeto Seguro de ejemplo
+                        id = 1,
+                        tipo = "Completo",
+                        cobertura = "Daños a terceros, robo, todo riesgo",
+                        precio = 200.0,
+                        descripcion = "Seguro con amplia cobertura para vehículos deportivos."
+                    ),
+                    createdAt = null, // Opcional
+                    updatedAt = null  // Opcional
+                ),
                 startDate = "01/03/2024",
                 endDate = "05/03/2024",
                 status = "COMPLETADA",
-                imageUrl = "lamborghini_yellow"
+                imageUrl = "lamborghini_yellow" // Este campo en Reservation puede ser redundante si ya está en Car
             )
             // Agrega más reservas completadas si es necesario
         )

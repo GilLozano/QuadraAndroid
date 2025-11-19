@@ -1,4 +1,5 @@
 package com.example.quadraandroidstudio
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -11,16 +12,15 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
-    // Declara una variable para el View Binding
+
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Infla el layout usando View Binding
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Configurar los listeners para los botones y textos
         setupClickListeners()
     }
 
@@ -37,19 +37,19 @@ class LoginActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     try {
                         // Llamamos a la API
-                        val response = RetrofitClient.instance.login(loginRequest)
+                        val token = RetrofitClient.instance.login(loginRequest)
 
-                        // Si la llamada es exitosa, guardamos el token y navegamos
                         Toast.makeText(this@LoginActivity, "Login exitoso!", Toast.LENGTH_SHORT).show()
-                        // Aquí guardarías el token: response.token
 
+                        // Navega a MainActivity
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
 
                     } catch (e: Exception) {
-                        // Si hay un error (ej. contraseña incorrecta, sin internet)
-                        Toast.makeText(this@LoginActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                        // Si hay un error (ej. contraseña incorrecta, error de red, error 500 del servidor)
+                        // Muestra un mensaje más descriptivo si puedes interpretar el error de 'e'
+                        Toast.makeText(this@LoginActivity, "Error al iniciar sesión: ${e.message}", Toast.LENGTH_LONG).show()
                     }
                 }
             } else {
@@ -61,12 +61,27 @@ class LoginActivity : AppCompatActivity() {
         binding.tvCreateAccount.setOnClickListener {
             // Lógica para navegar a la pantalla de registro
             Toast.makeText(this, "Navegando a la pantalla de registro...", Toast.LENGTH_SHORT).show()
+            // Aquí podrías iniciar tu Activity/Fragment de registro
+            // val intent = Intent(this, RegisterActivity::class.java)
+            // startActivity(intent)
         }
 
         // Listener para "Olvidé la contraseña"
         binding.tvForgotPassword.setOnClickListener {
-            // Lógica para navegar a la pantalla de recuperación de contraseña
             Toast.makeText(this, "Navegando a recuperación de contraseña...", Toast.LENGTH_SHORT).show()
+
+            // 1. Crear Intent para ir a MainActivity
+            val intent = Intent(this, MainActivity::class.java)
+
+            // 2. Añadir un "extra" para decirle a MainActivity a dónde ir
+            //    Usaremos el ID del fragmento definido en tu nav_graph.xml
+            intent.putExtra("NAVIGATE_TO_DESTINATION", R.id.forgotPasswordFragment)
+
+            // 3. Iniciar MainActivity
+            startActivity(intent)
+
+            // 4. (Opcional) Puedes cerrar LoginActivity si no quieres que el usuario vuelva aquí con "atrás"
+            // finish()
         }
     }
 }

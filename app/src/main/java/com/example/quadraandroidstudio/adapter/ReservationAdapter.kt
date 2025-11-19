@@ -29,9 +29,9 @@ class ReservationAdapter(private val onClick: (Reservation) -> Unit) :
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(reservation: Reservation) {
-            binding.tvCarName.text = reservation.car.name
-            binding.tvCarBrandYear.text = "Marca: ${reservation.car.brand} - Año: ${reservation.car.year}"
-            binding.tvCarPrice.text = "Precio: $${reservation.car.pricePerDay}/día"
+            binding.tvCarName.text = "${reservation.car.marca} ${reservation.car.modelo}"
+            binding.tvCarBrandYear.text = "Marca: ${reservation.car.marca} - Año: ${reservation.car.anio}"
+            binding.tvCarPrice.text = "Precio: $${reservation.car.precioPorDia}/día"
 
             // Cargar imagen del coche usando el nombre del drawable
             val imageResId = binding.root.context.resources.getIdentifier(

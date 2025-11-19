@@ -26,20 +26,20 @@ class CarAdapter(private val onReserveClick: (Car) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(car: Car) {
-            binding.textViewCarName.text = car.name
-            binding.textViewCarDetails.text = "Marca: ${car.brand}"
-            binding.textViewCarPrice.text = "Precio: $${car.pricePerDay}/día"
+            binding.textViewCarName.text = "${car.marca} ${car.modelo}"
+            binding.textViewCarDetails.text = "Año: ${car.anio} - Asientos: ${car.asientos}"
+            binding.textViewCarPrice.text = "Precio: $${car.precioPorDia}/día"
 
-            // Cargar imagen desde drawables (asumiendo que los nombres coinciden)
+
             val resourceId = itemView.context.resources.getIdentifier(
-                car.imageUrl, "drawable", itemView.context.packageName
+                car.imagen ?: "ic_car_placeholder",
+                "drawable",
+                itemView.context.packageName
             )
-            if (resourceId != 0) {
-                binding.imageViewCar.setImageResource(resourceId)
-            } else {
-                // Si la imagen no se encuentra, puedes poner un placeholder
-                binding.imageViewCar.setImageResource(R.drawable.ic_car_placeholder) // Asegúrate de tener este drawable
-            }
+            binding.imageViewCar.setImageResource(resourceId)
+
+            // Si 'imagen' es una URL completa (ej. "https://...")
+            // librería como Glide o Coil
 
             binding.buttonReservar.setOnClickListener {
                 onReserveClick(car)

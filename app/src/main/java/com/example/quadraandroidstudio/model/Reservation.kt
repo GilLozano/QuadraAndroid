@@ -1,6 +1,6 @@
 package com.example.quadraandroidstudio.model
 
-// Importa el data class Car que ya tienes
+
 import com.example.quadraandroidstudio.model.Car
 
 data class Reservation(

@@ -25,3 +25,13 @@ data class CreateAccountRequest(
 data class ApiResponse(
     val mensaje: String
 )
+
+data class EmailRequest(val email: String)
+
+// For validateToken API
+data class TokenRequest(val token: String)
+
+// For setNewPasswordWithToken API
+data class NewPasswordRequest(val password: String)
+
+data class ErrorResponse(val error: String)
