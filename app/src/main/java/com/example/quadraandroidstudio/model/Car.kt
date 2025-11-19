@@ -1,10 +1,25 @@
-package com.example.quadraandroidstudio.model // Asegúrate de que este sea tu paquete real
+package com.example.quadraandroidstudio.model
+
+import com.google.gson.annotations.SerializedName
 
 data class Car(
-    val id: String,
-    val name: String,
-    val brand: String,
-    val year: Int,
-    val pricePerDay: Double,
-    val imageUrl: String // Esto será el nombre del drawable
+    val id: Int,
+    val marca: String,
+    val modelo: String,
+    val color: String,
+    val anio: Int,
+    val transmision: String,
+    val tipo: String,
+    val puertas: Int,
+    val asientos: Int,
+    val clima: Boolean,
+    @SerializedName("precio_por_dia")
+    val precioPorDia: Double,
+    @SerializedName("seguroId")
+    val seguroId: Int,
+    val imagen: String?,
+    val estado: String,
+    val seguro: Seguro,
+    val createdAt: String?,
+    val updatedAt: String?
 )

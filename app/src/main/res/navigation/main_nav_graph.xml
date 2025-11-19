@@ -3,22 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/nav_home">
+    app:startDestination="@id/selectionAutoFragment">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.quadraandroidstudio.ReserveLocationFragment"
-        android:label="Selección de Reserva"
-        tools:layout="@layout/fragment_reserve_location" />
-
-    <fragment
-        android:id="@+id/nav_cars"
+        android:id="@+id/selectionAutoFragment"
         android:name="com.example.quadraandroidstudio.SelectionAutoFragment"
-        android:label="Selección de Auto"
-        tools:layout="@layout/fragment_selection_auto" />
-    <action
-        android:id="@+id/action_selectionAutoFragment_to_reserveFormFragment"
-        app:destination="@id/reserveFormFragment" />
+        android:label="fragment_selection_auto"
+        tools:layout="@layout/fragment_selection_auto" >
+        <action
+            android:id="@+id/action_selectionAutoFragment_to_reserveFormFragment"
+            app:destination="@id/reserveFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.quadraandroidstudio.HistoryFragment"
+        android:label="Historial"
+        tools:layout="@layout/fragment_history"/>
+
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.quadraandroidstudio.AccountFragment"
+        android:label="Cuenta"
+        tools:layout="@layout/fragment_account" />
 
     <fragment
         android:id="@+id/reserveFormFragment"
@@ -27,14 +33,47 @@
         tools:layout="@layout/fragment_reserve_form" />
 
     <fragment
-        android:id="@+id/nav_history"
-        android:name="com.example.quadraandroidstudio.HistoryFragment"
-        android:label="Historial"
-        tools:layout="@layout/fragment_history"/>
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.quadraandroidstudio.ForgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password">
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_validateTokenFragment"
+            app:destination="@id/validateTokenFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_account"
-        android:name="com.example.quadraandroidstudio.AccountFragment"
-        android:label="Cuenta"
-        tools:layout="@layout/fragment_account" />
+        android:id="@+id/validateTokenFragment"
+        android:name="com.example.quadraandroidstudio.ValidateTokenFragment"
+        android:label="fragment_validate_token"
+        tools:layout="@layout/fragment_validate_token">
+        <action
+            android:id="@+id/action_validateTokenFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.example.quadraandroidstudio.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password">
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_loginActivity"
+            app:destination="@id/loginActivity"
+            app:popUpTo="@id/main_nav_graph"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="token"
+            app:argType="string"/>
+    </fragment>
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.quadraandroidstudio.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+
 </navigation>

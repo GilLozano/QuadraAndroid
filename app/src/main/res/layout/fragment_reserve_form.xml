@@ -7,36 +7,23 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:padding="24dp"
-    tools:context=".ui.ReserveFormFragment">
-
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="180dp"
-        android:layout_height="70dp"
-        android:src="@drawable/quadralogo"
-        android:contentDescription="Quadra Car Rental Logo"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintVertical_bias="0.3" />
+    tools:context=".ReserveFormFragment">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Formulario de Datos de la Reserva"
         android:textColor="@color/colorTextPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tilLocation" />
+        app:layout_constraintBottom_toTopOf="@+id/tilLocation"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
         android:id="@+id/ivLocationIcon"

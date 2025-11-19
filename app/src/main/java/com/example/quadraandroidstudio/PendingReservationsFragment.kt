@@ -10,6 +10,7 @@ import com.example.quadraandroidstudio.databinding.FragmentPendingReservationsBi
 import com.example.quadraandroidstudio.adapter.ReservationAdapter // Crearemos este adapter
 import com.example.quadraandroidstudio.model.Reservation // Crearemos este modelo
 import com.example.quadraandroidstudio.model.Car // Usaremos el modelo Car
+import com.example.quadraandroidstudio.model.Seguro
 
 class PendingReservationsFragment : Fragment() {
 
@@ -45,18 +46,43 @@ class PendingReservationsFragment : Fragment() {
 
     private fun loadPendingReservations() {
         // Datos de ejemplo para reservas pendientes (igual que en tu imagen)
-        val pendingReservations = listOf(
+        val completedReservations = listOf(
             Reservation(
-                id = "RES001",
-                car = Car("1", "Lamborghini Huracan LP 610-4", "Lamborghini", 2023, 1500.0, "lamborghini_red"),
-                startDate = "10/04/2024",
-                endDate = "15/04/2024",
-                status = "PENDIENTE",
-                imageUrl = "lamborghini_red"
+                id = "RES002",
+                // ¡CAMBIO AQUÍ! Crea un objeto Car que coincida con el constructor completo
+                car = Car(
+                    id = 1, // Un ID de ejemplo
+                    marca = "Lamborghini",
+                    modelo = "Aventador SV LP 770-4",
+                    color = "Amarillo",
+                    anio = 2022,
+                    transmision = "Automática",
+                    tipo = "Deportivo",
+                    puertas = 2,
+                    asientos = 2,
+                    clima = true,
+                    precioPorDia = 1800.0,
+                    seguroId = 1, // Un ID de seguro de ejemplo
+                    imagen = "lamborghini_yellow", // El nombre del recurso drawable
+                    estado = "Disponible", // Estado de ejemplo
+                    seguro = Seguro( // Objeto Seguro de ejemplo
+                        id = 1,
+                        tipo = "Completo",
+                        cobertura = "Daños a terceros, robo, todo riesgo",
+                        precio = 200.0,
+                        descripcion = "Seguro con amplia cobertura para vehículos deportivos."
+                    ),
+                    createdAt = null, // Opcional
+                    updatedAt = null  // Opcional
+                ),
+                startDate = "01/03/2024",
+                endDate = "05/03/2024",
+                status = "COMPLETADA",
+                imageUrl = "lamborghini_yellow" // Este campo en Reservation puede ser redundante si ya está en Car
             )
-            // Agrega más reservas pendientes si es necesario
+            // Agrega más reservas completadas si es necesario
         )
-        reservationAdapter.submitList(pendingReservations)
+        reservationAdapter.submitList(completedReservations)
     }
 
     override fun onDestroyView() {
