@@ -2,6 +2,10 @@ package com.example.quadraandroidstudio.model
 
 import com.google.gson.annotations.SerializedName
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Car(
     val id: Int,
     val marca: String,
@@ -22,4 +26,4 @@ data class Car(
     val seguro: Seguro,
     val createdAt: String?,
     val updatedAt: String?
-)
+):Parcelable

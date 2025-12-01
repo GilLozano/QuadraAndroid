@@ -84,14 +84,15 @@
         app:layout_constraintStart_toEndOf="@+id/ivLockIcon"
         app:layout_constraintTop_toBottomOf="@+id/tilEmail"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorTextSecondary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="@color/colorTextPrimary" />
+            android:textColor="@color/colorTextPrimary"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -2,15 +2,20 @@ package com.example.quadraandroidstudio
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.quadraandroidstudio.utils.SharedPreferencesManager
+import com.example.quadraandroidstudio.SharedViewModel
 import com.example.quadraandroidstudio.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val sharedViewModel: SharedViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +30,12 @@ class MainActivity : AppCompatActivity() {
 
         // Configurar la BottomNavigationView con el NavController
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        val userId = SharedPreferencesManager.getUserId(this)
+        if (userId != -1) {
+            // Si hay un usuario logueado, pedimos al ViewModel que cargue sus datos
+            sharedViewModel.fetchUserProfile(userId)
+        }
 
         handleIntentNavigation()
 
