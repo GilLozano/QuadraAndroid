@@ -18,19 +18,39 @@
         android:id="@+id/historyFragment"
         android:name="com.example.quadraandroidstudio.HistoryFragment"
         android:label="Historial"
-        tools:layout="@layout/fragment_history"/>
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_historyFragment_to_reserveFormFragment"
+            app:destination="@id/reserveFormFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.quadraandroidstudio.AccountFragment"
         android:label="Cuenta"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/reserveFormFragment"
         android:name="com.example.quadraandroidstudio.ReserveFormFragment"
         android:label="fragment_reserve_form"
-        tools:layout="@layout/fragment_reserve_form" />
+        tools:layout="@layout/fragment_reserve_form" >
+        <argument
+            android:name="selectedCar"
+            app:argType="com.example.quadraandroidstudio.model.Car"
+            app:nullable="true" />
+        <argument
+            android:name="reservationToEdit"
+            app:argType="com.example.quadraandroidstudio.model.Reservation"
+            app:nullable="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -75,5 +95,20 @@
         android:name="com.example.quadraandroidstudio.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.quadraandroidstudio.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <argument
+            android:name="isEditMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.quadraandroidstudio.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
 
 </navigation>

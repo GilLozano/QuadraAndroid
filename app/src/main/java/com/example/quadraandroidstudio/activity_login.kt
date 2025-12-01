@@ -2,28 +2,51 @@ package com.example.quadraandroidstudio
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quadraandroidstudio.databinding.ActivityLoginBinding
 import androidx.lifecycle.lifecycleScope
 import com.example.quadraandroidstudio.data.LoginRequest
 import com.example.quadraandroidstudio.network.RetrofitClient
+import com.auth0.android.jwt.JWT
+import com.example.quadraandroidstudio.utils.SharedPreferencesManager
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
-
 
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (isUserLoggedIn()) {
+            // Si ya está logueado, saltamos directo a MainActivity
+            navigateToMain()
+            // Importante: Usamos 'return' para que no siga ejecutando el resto del onCreate
+            // y no intente mostrar el formulario de login un milisegundo antes de cambiar.
+            return
+        }
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupClickListeners()
     }
 
+    private fun isUserLoggedIn(): Boolean {
+        val userId = SharedPreferencesManager.getUserId(this)
+        // Si es diferente de -1, significa que hay un ID guardado
+        return userId != -1
+    }
+
+    // Función para ir a la pantalla principal y cerrar la de login
+    private fun navigateToMain() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        // 'finish()' es crucial. Cierra LoginActivity para que si el usuario
+        // presiona "Atrás" en MainActivity, se salga de la app en lugar de volver al login.
+        finish()
+    }
     private fun setupClickListeners() {
         // Listener para el botón de Iniciar Sesión
         binding.btnLogin.setOnClickListener {
@@ -36,20 +59,40 @@ class LoginActivity : AppCompatActivity() {
                 // Usamos una coroutine para la llamada a la red
                 lifecycleScope.launch {
                     try {
-                        // Llamamos a la API
+                        // 1. Llamamos a la API y recibimos el token (String)
                         val token = RetrofitClient.instance.login(loginRequest)
 
-                        Toast.makeText(this@LoginActivity, "Login exitoso!", Toast.LENGTH_SHORT).show()
 
-                        // Navega a MainActivity
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        // 2. Decodificamos el token usando la librería auth0
+                        val jwt = JWT(token)
+
+                        // 3. Extraemos el 'id' del payload del token.
+                        //    Usamos .asInt() porque tu ID de usuario es un número entero.
+                        val userId = jwt.getClaim("id").asInt()
+
+                        if (userId != null) {
+                            // 4. Guardamos el Token y el ID en el teléfono para usarlos luego
+                            SharedPreferencesManager.saveAuthToken(this@LoginActivity, token)
+                            SharedPreferencesManager.saveUserId(this@LoginActivity, userId)
+
+                            Log.d("LoginActivity", "Login exitoso. ID guardado: $userId")
+                            Toast.makeText(this@LoginActivity, "Login exitoso!", Toast.LENGTH_SHORT).show()
+
+                            // 5. Navegamos a MainActivity solo si todo salió bien
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent)
+                            finish() // Cerramos LoginActivity
+                        } else {
+                            // Esto pasa si el token que envió el servidor no tiene el campo "id"
+                            Toast.makeText(this@LoginActivity, "Error de autenticación: Token inválido.", Toast.LENGTH_LONG).show()
+                        }
+
+
 
                     } catch (e: Exception) {
                         // Si hay un error (ej. contraseña incorrecta, error de red, error 500 del servidor)
-                        // Muestra un mensaje más descriptivo si puedes interpretar el error de 'e'
-                        Toast.makeText(this@LoginActivity, "Error al iniciar sesión: ${e.message}", Toast.LENGTH_LONG).show()
+                        Log.e("LoginActivity", "Error en login", e)
+                        Toast.makeText(this@LoginActivity, "Error al iniciar sesión. Verifica tus datos.", Toast.LENGTH_LONG).show()
                     }
                 }
             } else {
@@ -59,29 +102,14 @@ class LoginActivity : AppCompatActivity() {
 
         // Listener para "Crear cuenta"
         binding.tvCreateAccount.setOnClickListener {
-            // Lógica para navegar a la pantalla de registro
-            Toast.makeText(this, "Navegando a la pantalla de registro...", Toast.LENGTH_SHORT).show()
-            // Aquí podrías iniciar tu Activity/Fragment de registro
-            // val intent = Intent(this, RegisterActivity::class.java)
-            // startActivity(intent)
+            // Creamos el Intent para ir a la RegisterActivity
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
         // Listener para "Olvidé la contraseña"
         binding.tvForgotPassword.setOnClickListener {
-            Toast.makeText(this, "Navegando a recuperación de contraseña...", Toast.LENGTH_SHORT).show()
-
-            // 1. Crear Intent para ir a MainActivity
-            val intent = Intent(this, MainActivity::class.java)
-
-            // 2. Añadir un "extra" para decirle a MainActivity a dónde ir
-            //    Usaremos el ID del fragmento definido en tu nav_graph.xml
-            intent.putExtra("NAVIGATE_TO_DESTINATION", R.id.forgotPasswordFragment)
-
-            // 3. Iniciar MainActivity
-            startActivity(intent)
-
-            // 4. (Opcional) Puedes cerrar LoginActivity si no quieres que el usuario vuelva aquí con "atrás"
-            // finish()
+            Toast.makeText(this, "Navegando a forgot password...", Toast.LENGTH_SHORT).show()
         }
     }
 }

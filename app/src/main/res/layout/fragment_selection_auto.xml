@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/colorBackground"
-    tools:context="SelectionAutoFragment">
+    tools:context=".SelectionAutoFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -20,66 +20,90 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <HorizontalScrollView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtros"
+        android:textColor="@color/colorTextSecondary"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
         android:layout_marginBottom="16dp">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupFilters"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:chipSpacingHorizontal="8dp"
-            app:singleLine="true">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTransmision"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Transmisión"
-                android:textColor="@color/chip_text_selector"
-                app:chipBackgroundColor="@color/chip_background_selector" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingEnd="8dp">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipAsientos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Asientos"
-                android:textColor="@color/chip_text_selector"
-                app:chipBackgroundColor="@color/chip_background_selector" />
+                <TextView
+                    android:id="@+id/headerMarca"
+                    style="@style/FilterHeaderStyle"
+                    android:text="Marca" />
+                <LinearLayout
+                    android:id="@+id/containerMarca"
+                    style="@style/FilterContainerStyle">
+                    <CheckBox android:id="@+id/cbToyota" android:text="Toyota" style="@style/FilterCheckboxStyle"/>
+                    <CheckBox android:id="@+id/cbHyundai" android:text="Hyundai" style="@style/FilterCheckboxStyle"/>
+                    <CheckBox android:id="@+id/cbKia" android:text="Kia" style="@style/FilterCheckboxStyle"/>
+                </LinearLayout>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipAnio"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Año"
-                android:textColor="@color/chip_text_selector"
-                app:chipBackgroundColor="@color/chip_background_selector" />
+                <TextView
+                    android:id="@+id/headerAnio"
+                    style="@style/FilterHeaderStyle"
+                    android:layout_marginTop="8dp"
+                    android:text="Año" />
+                <LinearLayout
+                    android:id="@+id/containerAnio"
+                    style="@style/FilterContainerStyle">
+                    <CheckBox android:id="@+id/cb2022" android:text="2022" style="@style/FilterCheckboxStyle"/>
+                    <CheckBox android:id="@+id/cb2021" android:text="2021" style="@style/FilterCheckboxStyle"/>
+                    <CheckBox android:id="@+id/cb2020" android:text="2020" style="@style/FilterCheckboxStyle"/>
+                </LinearLayout>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTipo"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tipo"
-                android:textColor="@color/chip_text_selector"
-                app:chipBackgroundColor="@color/chip_background_selector" />
+            </LinearLayout> <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="8dp">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMarca"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Marca"
-                android:textColor="@color/chip_text_selector"
-                app:chipBackgroundColor="@color/chip_background_selector" />
+            <TextView
+                android:id="@+id/headerTipo"
+                style="@style/FilterHeaderStyle"
+                android:text="Tipo" />
+            <LinearLayout
+                android:id="@+id/containerTipo"
+                style="@style/FilterContainerStyle">
+                <CheckBox android:id="@+id/cbSedan" android:text="Sedán" style="@style/FilterCheckboxStyle"/>
+                <CheckBox android:id="@+id/cbSUV" android:text="SUV" style="@style/FilterCheckboxStyle"/>
+                <CheckBox android:id="@+id/cbDeportivo" android:text="Deportivo" style="@style/FilterCheckboxStyle"/>
+            </LinearLayout>
 
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
+            <TextView
+                android:id="@+id/headerTransmision"
+                style="@style/FilterHeaderStyle"
+                android:layout_marginTop="8dp"
+                android:text="Transmisión" />
+            <LinearLayout
+                android:id="@+id/containerTransmision"
+                style="@style/FilterContainerStyle">
+                <CheckBox android:id="@+id/cbAutomatica" android:text="Automática" style="@style/FilterCheckboxStyle"/>
+                <CheckBox android:id="@+id/cbManual" android:text="Manual" style="@style/FilterCheckboxStyle"/>
+            </LinearLayout>
+
+        </LinearLayout> </LinearLayout>
+    </ScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAutos"

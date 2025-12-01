@@ -9,7 +9,7 @@
     android:paddingEnd="16dp"
     android:paddingTop="16dp"
     android:background="@color/colorBackground"
-    tools:context=".ui.CompletedReservationsFragment">
+    tools:context="PastReservationsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCompletedReservations"

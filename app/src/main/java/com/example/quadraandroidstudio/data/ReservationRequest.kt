@@ -2,21 +2,22 @@ package com.example.quadraandroidstudio.data
 
 import com.google.gson.annotations.SerializedName
 
-// Este es el cuerpo que tu API espera para crear una reserva
+// Clase principal para la solicitud
 data class ReservationRequest(
-    @SerializedName("vehiculo_id")
-    val vehiculoId: Int, // Debería ser Int para PostgreSQL
-    @SerializedName("usuario_id")
-    val usuarioId: Int, // Asumiendo que obtendrás el ID del usuario logueado
-    val fechaInicio: String, // Formato "YYYY-MM-DD" o "DD/MM/YYYY" según tu API
-    val fechaFin: String,
-    val lugarRecogida: String,
-    val metodoPago: String,
-    val estado: String = "PENDIENTE" // Valor por defecto
+    @SerializedName("usuario_id") val usuarioId: Int,
+    @SerializedName("vehiculo_id") val vehiculoId: Int,
+    val nombre: String,     // Requerido por tu esquema Mongoose
+    val telefono: String,   // Requerido por tu esquema Mongoose
+    val email: String,      // Requerido por tu esquema Mongoose
+    @SerializedName("fecha_inicio") val fechaInicio: String, // Formato YYYY-MM-DD
+    @SerializedName("fecha_fin") val fechaFin: String,       // Formato YYYY-MM-DD
+    val alquiler: AlquilerData, // Objeto anidado requerido
+    val lugarRecogida: String // Aunque no está en tu esquema Mongoose, estaba en tu form anterior. Lo mantengo por si acaso tu backend lo usa de alguna forma no visible aquí, si no, puedes quitarlo.
 )
 
-// Clase para la respuesta simple de la API (si tu API devuelve id y mensaje)
-data class CreateReservationResponse(
-    val id: String, // El ID de la reserva creada
-    val message: String
+// Sub-clase para los datos de alquiler anidados
+data class AlquilerData(
+    val monto: Double,
+    @SerializedName("metodo_pago") val metodoPago: String
+    // 'estado' tiene un default en Mongoose ("No Pagado"), no hace falta enviarlo.
 )
